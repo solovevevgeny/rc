@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('train_type_id')->constrained('train_types')->cascadeOnDelete();
             $table->foreignId('athlete_id')->constrained('users')->cascadeOnDelete();
             $table->dateTime('datetime');
-            $table->dateTime('finished_at');
+            $table->dateTime('finished_at')->nullable()->default(NULL);
             $table->timestamps();
         });
     }
