@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EventSeeder::class);
         
         $this->call(TrainTypesSeeder::class);
+        $this->call(TrainsSeeder::class);
     }
 }
