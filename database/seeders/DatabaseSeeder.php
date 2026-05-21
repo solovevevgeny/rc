@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         
         $this->call(TrainTypesSeeder::class);
         $this->call(TrainsSeeder::class);
+        $this->call(ReportsSeeder::class);
     }
 }
