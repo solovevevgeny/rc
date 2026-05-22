@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Train;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class TrainController extends Controller
 {
@@ -38,8 +39,26 @@ class TrainController extends Controller
                 'trains.datetime as date',
                 'trains.finished_at as finished',
             ])
-            // ->where('athlete_id','=', $user_id)
+            ->where('athlete_id','=', $user_id)
             ->orderBy('trains.datetime')
             ->get();
     }
+
+    /**
+     * create new train (POST REQUEST)
+     */
+    public function create(Request $request) {
+        $validated = $request->validate([
+            'order' => ['required', 'integer'],
+            'train_type_id' => ['required', 'integer', 'exists:train_types,id'],
+            'athlete_id' => ['required', 'integer', 'exists:users,id'],
+            'datetime' => ['required', 'date'],
+            'finished_at' => ['nullable', 'date'],
+        ]);
+
+        $train = Train::create($validated);
+
+        return response()->json($train, 201);
+    }
+
 }

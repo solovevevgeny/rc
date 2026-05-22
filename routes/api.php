@@ -22,3 +22,4 @@ Route::get("/user/{id}", [UserController::class, 'show']);
 
 Route::get('/trains/{user_id}', [TrainController::class, 'index']);      // all trains for user_id
 Route::get('/trains/week/{user_id}', [TrainController::class, 'week']);  // all trains on WEEK for user_id
+Route::post('/trains', [TrainController::class, 'create']);              // create new train
