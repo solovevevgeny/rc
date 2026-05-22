@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+
+
+class UserController extends Controller
+{
+    public function index(){
+        return User::with('role')->get();
+    }
+
+    public function show($id) {
+        $user = User::with('role')->findOrFail($id);
+        return $user;
+    }
+
+}
